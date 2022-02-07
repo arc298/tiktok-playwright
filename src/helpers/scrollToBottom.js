@@ -1,9 +1,8 @@
 const scrollToBottom = async (page, distance = 100, delay = 400) => {
   while (await page.evaluate(() => document.scrollingElement.scrollTop + window.innerHeight < document.scrollingElement.scrollHeight)) {
-    await page.evaluate((y) => {
-      document.scrollingElement.scrollBy(0, y)
+    await page.evaluate((distance) => {
+      document.scrollingElement.scrollBy(0, distance);
     }, distance)
-
     await page.waitForTimeout(delay)
   }
 }

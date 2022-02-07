@@ -83,13 +83,13 @@ class TikTokPlaywright {
 
   async _scrollToBottom() {
     this.spinner.text = 'Scrolling through videos'
-    return await scrollToBottom(this.page, 50, 2000)
+    return await scrollToBottom(this.page, 5000, 2000)
   }
 
   async _hoverVideoFeedItems() {
     this.spinner.text = 'Downloading videos'
 
-    this.videoFeedItems = await this.page.$$('.video-feed-item')
+    this.videoFeedItems = await this.page.$$('[data-e2e="user-post-item"]')
 
     for (const item of this.videoFeedItems) {
       await item.hover()
