@@ -36,7 +36,7 @@ class TikTokPlaywright {
   async download(user, options) {
     const { downloadDir, redownload, quiet } = Object.assign(
       this.defaults,
-      { downloadDir: `./${getUser(user)}` },
+      { downloadDir: `./${getUser(user)}/tiktok` },
       options
     )
 
