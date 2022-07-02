@@ -143,8 +143,12 @@ describe('TikTokPlaywright', () => {
   })
 
   describe('_scrollToBottom', () => {
-    beforeEach(() => {
-      tiktok._scrollToBottom()
+    beforeEach(async () => {
+      tiktok.page = {
+        click: jest.fn(),
+      }
+
+      await tiktok._scrollToBottom()
     })
 
     it('scrolls to the bottom', () => {
