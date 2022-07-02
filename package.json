@@ -1,6 +1,6 @@
 {
   "name": "tiktok-playwright",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "An application for downloading a tiktok user's videos.",
   "main": "index.js",
   "scripts": {
