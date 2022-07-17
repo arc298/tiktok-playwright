@@ -60,10 +60,11 @@ class TikTokPlaywright {
       devtools: false,
     })
 
-    this.context = await this.browser.newContext({ 
+    this.context = await this.browser.newContext({
       ignoreHTTPSErrors: true,
-      userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.53 Safari/537.36 Edg/103.0.1264.37'
-     })
+      userAgent:
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.53 Safari/537.36 Edg/103.0.1264.37',
+    })
     this.page = await this.context.newPage()
 
     TikTokPlaywright.createDownloadDir(this.downloadDir)
@@ -85,7 +86,11 @@ class TikTokPlaywright {
   }
 
   async _scrollToBottom() {
-    await this.page.click('button:has-text("Accept all")');
+    const acceptAll = await this.page.$('button:has-text("Accept all")')
+    if (acceptAll) {
+      await this.page.locator('button:has-text("Accept all")').click()
+    }
+
     this.spinner.text = 'Scrolling through videos'
     return await scrollToBottom(this.page, 500, 200)
   }
