@@ -146,6 +146,7 @@ describe('TikTokPlaywright', () => {
     beforeEach(async () => {
       tiktok.page = {
         click: jest.fn(),
+        $: jest.fn(),
       }
 
       await tiktok._scrollToBottom()
@@ -206,15 +207,11 @@ describe('TikTokPlaywright', () => {
 
         describe('and is NOT already in pending downloads', () => {
           beforeEach(() => {
-            beforeEach(() => {
-              tiktok.pendingDownloads = {}
-            })
+            tiktok.pendingDownloads = {}
+          })
 
-            it('returns true', () => {
-              expect(tiktok._shouldDownload('filename', 'videoUrl')).toEqual(
-                true
-              )
-            })
+          it('returns true', () => {
+            expect(tiktok._shouldDownload('filename', 'videoUrl')).toEqual(true)
           })
         })
       })
@@ -278,15 +275,13 @@ describe('TikTokPlaywright', () => {
 
         describe('and is NOT already in pending downloads', () => {
           beforeEach(() => {
-            beforeEach(() => {
-              tiktok.pendingDownloads = {}
-            })
+            tiktok.pendingDownloads = {}
+          })
 
-            it('returns true', () => {
-              expect(tiktok._shouldDownload('filename', 'videoUrl')).toEqual(
-                true
-              )
-            })
+          it('returns false', () => {
+            expect(tiktok._shouldDownload('filename', 'videoUrl')).toEqual(
+              false
+            )
           })
         })
       })
